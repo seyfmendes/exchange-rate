@@ -4,17 +4,18 @@ import com.openpayd.rate.model.dto.ConversionResultModel;
 import com.openpayd.rate.model.dto.RateResultModel;
 import com.openpayd.rate.model.entity.Conversion;
 import com.openpayd.rate.repository.ConversionRepository;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
 
-@Slf4j
 @Service
 public class RateService {
 
+    private static Logger logger = LoggerFactory.getLogger(RateService.class);
     @Autowired
     private RateClientService rateClientService;
 
@@ -23,13 +24,13 @@ public class RateService {
 
     public Double getExchangeRate(String source, String target) {
         RateResultModel rateModel = rateClientService.getRate(source, target);
-        log.info("exchange rate  result by fixer service : " + rateModel.toString());
+        logger.info("exchange rate  result by fixer service : " + rateModel.toString());
         return rateModel.getRates().get(target);
     }
 
     public Conversion getConversion(String source, String target, Double sourceAmount) {
         ConversionResultModel conversionResultModel = rateClientService.getConversion(source, target, sourceAmount);
-        log.info("conversion result by fixer service : " + conversionResultModel.toString());
+        logger.info("conversion result by fixer service : " + conversionResultModel.toString());
         Conversion conversion;
         if (conversionResultModel.isSuccess())
             conversion = new Conversion(conversionResultModel.getQuery().getFrom(), conversionResultModel.getQuery().getTo(),
