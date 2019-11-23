@@ -3,6 +3,8 @@ package com.openpayd.rate.service;
 
 import com.openpayd.rate.model.dto.ConversionResultModel;
 import com.openpayd.rate.model.dto.RateResultModel;
+import com.openpayd.rate.model.entity.Conversion;
+import com.openpayd.rate.repository.ConversionRepository;
 import com.openpayd.rate.utils.Utils;
 import org.junit.Before;
 import org.junit.Test;
@@ -10,6 +12,9 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import java.time.LocalDate;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -29,6 +34,9 @@ public class RateServiceTests {
 
     @Autowired
     RateClientService rateClientService;
+
+    @Autowired
+    ConversionRepository conversionRepository;
 
 
     @Before
@@ -50,6 +58,12 @@ public class RateServiceTests {
                 TARGET_CURRENCY, SOURCE_AMOUNT).getTargetAmount();
         double expectedTargetAmount = Utils.multiply(rateResultModel.getRates().get(TARGET_CURRENCY), SOURCE_AMOUNT);
         assertThat(actualTargetAmount).isEqualTo(expectedTargetAmount);
+    }
 
+    @Test
+    public void Should_Conversions_When_EnterTransactionIdOrTransactionDate() {
+        Conversion conversion = conversionRepository.save(new Conversion(SOURCE_CURRENCY, TARGET_CURRENCY, SOURCE_AMOUNT, 120.0, LocalDate.now()));
+        List<Conversion> conversions = rateService.getConversions(conversion.getTransactionId(), LocalDate.now());
+        assertThat(conversions).isNotEmpty();
     }
 }
