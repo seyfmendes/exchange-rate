@@ -30,14 +30,13 @@ public class RateServiceTests {
     private ConversionResultModel conversionResultModel;
 
     @Autowired
-    RateService rateService;
+    private RateService rateService;
 
     @Autowired
-    RateClientService rateClientService;
+    private RateClientService rateClientService;
 
     @Autowired
-    ConversionRepository conversionRepository;
-
+    private ConversionRepository conversionRepository;
 
     @Before
     public void init() {

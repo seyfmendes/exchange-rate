@@ -19,7 +19,7 @@ public class RateService {
 
     private RateClientService rateClientService;
 
-    ConversionRepository conversionRepository;
+    private ConversionRepository conversionRepository;
 
     public RateService(RateClientService rateClientService, ConversionRepository conversionRepository) {
         this.rateClientService = rateClientService;

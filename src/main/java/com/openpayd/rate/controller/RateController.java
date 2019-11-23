@@ -17,7 +17,7 @@ import java.util.List;
 @Api(value = "Exchange Rate", description = "get  exchange rate")
 public class RateController {
 
-    RateService rateService;
+    private RateService rateService;
 
     public RateController(RateService rateService) {
         this.rateService = rateService;
