@@ -1,4 +1,4 @@
-FROM openjdk:11-jre-slim-stretch
+FROM openjdk:8-jre-slim-stretch
 
 ENV SPRING_OUTPUT_ANSI_ENABLED=ALWAYS \
     JAVA_OPTS=""

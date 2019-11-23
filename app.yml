@@ -1,7 +1,7 @@
 version: '2'
 services:
   exchangerate-app:
-    image: seyf/exchangerate
+    image: seyfmendes/exchange-rate
     environment:
       - SPRING_DATASOURCE_URL=jdbc:postgresql://exchangerate-postgresql:5432/rate
     ports:
