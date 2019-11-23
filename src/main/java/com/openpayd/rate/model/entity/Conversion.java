@@ -12,18 +12,18 @@ public class Conversion implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_conversion")
     @SequenceGenerator(name = "seq_conversion", sequenceName = "seq_conversion", allocationSize = 1)
     @Column(name = "transaction_id")
-    Long transactionId;
+    private Long transactionId;
 
     @Column(name = "source_currency")
-    String sourceCurrency;
+    private String sourceCurrency;
     @Column(name = "target_currency")
-    String targetCurrency;
+    private String targetCurrency;
     @Column(name = "source_amount", precision = 19, scale = 4)
-    double sourceAmount;
+    private double sourceAmount;
     @Column(name = "target_amount", precision = 19, scale = 4)
-    double targetAmount;
+    private double targetAmount;
     @Column(name = "transaction_date")
-    LocalDate transactionDate;
+    private LocalDate transactionDate;
 
     public Conversion() {
     }
@@ -82,5 +82,17 @@ public class Conversion implements Serializable {
 
     public void setTransactionDate(LocalDate transactionDate) {
         this.transactionDate = transactionDate;
+    }
+
+    @Override
+    public String toString() {
+        return "Conversion{" +
+                "transactionId=" + transactionId +
+                ", sourceCurrency='" + sourceCurrency + '\'' +
+                ", targetCurrency='" + targetCurrency + '\'' +
+                ", sourceAmount=" + sourceAmount +
+                ", targetAmount=" + targetAmount +
+                ", transactionDate=" + transactionDate +
+                '}';
     }
 }

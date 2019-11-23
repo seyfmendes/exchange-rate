@@ -1,0 +1,39 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /rate/api/v1/
+management:
+  server:
+    servlet:
+      context-path: /management
+    port: 8081
+    endpoint:
+      health.enabled: true
+
+logging:
+  level:
+    root: INFO
+    com.openpayd: TRACE
+  file:
+    path: logs
+
+
+spring:
+  application.name: exchange-rate-api
+  datasource:
+    driverClassName: org.postgresql.Driver
+    hikari:
+      pool-name: exchange-rate-dbconnectionpool
+    url: jdbc:postgresql://localhost:5432/rate
+    username: seyfettin.mendes
+    password: password
+  jpa:
+    show-sql: true
+    database: postgresql
+    hibernate:
+      ddl-auto: update
+      org.hibernate.envers.default_schema: public
+
+services:
+  url: http://data.fixer.io/api/
+  apiKey: 96bfcb20f940d0169074d3ca80a749ec
