@@ -25,7 +25,7 @@ spring:
     hikari:
       pool-name: exchange-rate-dbconnectionpool
     url: jdbc:postgresql://localhost:5432/rate
-    username: seyfettin.mendes
+    username: rate
     password: password
   jpa:
     show-sql: true

@@ -1,0 +1,9 @@
+version: '2'
+services:
+  exchangerate-postgresql:
+    image: postgres:11.5
+    environment:
+      - POSTGRES_USER=rate
+      - POSTGRES_PASSWORD=password
+    ports:
+      - 5432:5432

@@ -1,0 +1,12 @@
+version: '2'
+services:
+  exchangerate-app:
+    image: seyf/exchangerate
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://exchangerate-postgresql:5432/rate
+    ports:
+      - 8080:8080
+  exchangerate-postgresql:
+    extends:
+      file: postgresql.yml
+      service: exchangerate-postgresql
