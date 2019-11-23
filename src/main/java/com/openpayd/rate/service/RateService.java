@@ -6,7 +6,6 @@ import com.openpayd.rate.model.entity.Conversion;
 import com.openpayd.rate.repository.ConversionRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -16,11 +15,15 @@ import java.util.List;
 public class RateService {
 
     private static Logger logger = LoggerFactory.getLogger(RateService.class);
-    @Autowired
+
     private RateClientService rateClientService;
 
-    @Autowired
     ConversionRepository conversionRepository;
+
+    public RateService(RateClientService rateClientService, ConversionRepository conversionRepository) {
+        this.rateClientService = rateClientService;
+        this.conversionRepository = conversionRepository;
+    }
 
     public Double getExchangeRate(String source, String target) {
         RateResultModel rateModel = rateClientService.getRate(source, target);

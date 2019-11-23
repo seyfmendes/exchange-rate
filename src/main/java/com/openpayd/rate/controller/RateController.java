@@ -3,7 +3,6 @@ package com.openpayd.rate.controller;
 import com.openpayd.rate.model.entity.Conversion;
 import com.openpayd.rate.service.RateService;
 import io.swagger.annotations.*;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,9 +17,11 @@ import java.util.List;
 @Api(value = "Exchange Rate", description = "get  exchange rate")
 public class RateController {
 
-    @Autowired
     RateService rateService;
 
+    public RateController(RateService rateService) {
+        this.rateService = rateService;
+    }
 
     @ApiOperation(value = "get exchange rate from source currency to target currency")
     @ApiResponses(value = {

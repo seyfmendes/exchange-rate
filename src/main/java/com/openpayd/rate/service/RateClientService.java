@@ -3,7 +3,6 @@ package com.openpayd.rate.service;
 import com.openpayd.rate.configuration.FixerConfiguration;
 import com.openpayd.rate.model.dto.ConversionResultModel;
 import com.openpayd.rate.model.dto.RateResultModel;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -11,11 +10,14 @@ import org.springframework.web.client.RestTemplate;
 @Service
 public class RateClientService {
 
-    @Autowired
     private RestTemplate restTemplate;
 
-    @Autowired
     private FixerConfiguration fixerConfiguration;
+
+    public RateClientService(RestTemplate restTemplate, FixerConfiguration fixerConfiguration) {
+        this.restTemplate = restTemplate;
+        this.fixerConfiguration = fixerConfiguration;
+    }
 
     public RateResultModel getRate(String source, String target) {
         String url = fixerConfiguration.getUrl() + "latest" + "?access_key=" + fixerConfiguration.getApiKey() + "&base=" + source + "&symbols=" + target;

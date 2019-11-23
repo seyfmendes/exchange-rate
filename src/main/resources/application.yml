@@ -9,7 +9,6 @@ management:
     port: 8081
     endpoint:
       health.enabled: true
-#      metrics.enabled: true
 
 logging:
   level:
