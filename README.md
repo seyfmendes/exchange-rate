@@ -1,6 +1,6 @@
 # exchange rate
 
-# test method naming convention was made using this site (https://dzone.com/articles/7-popular-unit-test-naming)
+*Test method naming convention was made using this site (https://dzone.com/articles/7-popular-unit-test-naming)
 
 You can run application with docker. 
 * Firstly install docker in your machine. 
