@@ -26,7 +26,8 @@ public class RateController {
     @ApiOperation(value = "get exchange rate from source currency to target currency")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "It is successful"),
-            @ApiResponse(code = 404, message = "exchange rate not found")
+            @ApiResponse(code = 404, message = "exchange rate not found"),
+            @ApiResponse(code = 500, message = "It is failed"),
     })
     @RequestMapping(value = "exchange-rate", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public Double getExchangeRate(@ApiParam(value = "source currency", required = true) @RequestParam("source") String source,
@@ -37,7 +38,8 @@ public class RateController {
     @ApiOperation(value = "get conversion ")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "It is successful"),
-            @ApiResponse(code = 404, message = "conversion not found")
+            @ApiResponse(code = 404, message = "conversion not found"),
+            @ApiResponse(code = 500, message = "It is failed"),
     })
     @RequestMapping(value = "conversion", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public Conversion getConversion(@ApiParam(value = "source currency", required = true) @RequestParam("source") String source,
@@ -49,7 +51,8 @@ public class RateController {
     @ApiOperation(value = "get conversion list By Transaction Id or Transaction Date ")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "It is successful"),
-            @ApiResponse(code = 404, message = "conversion list not found")
+            @ApiResponse(code = 404, message = "conversion list not found"),
+            @ApiResponse(code = 500, message = "It is failed"),
     })
     @RequestMapping(value = "conversion-list", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Conversion> getConversions(@ApiParam(value = "transaction id") @RequestParam(value = "transactionId", required = false) Long transactionId,
