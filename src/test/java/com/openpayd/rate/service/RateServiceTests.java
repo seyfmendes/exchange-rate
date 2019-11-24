@@ -1,6 +1,7 @@
 package com.openpayd.rate.service;
 
 
+import com.openpayd.rate.exception.RateException;
 import com.openpayd.rate.model.dto.ConversionResultModel;
 import com.openpayd.rate.model.dto.RateResultModel;
 import com.openpayd.rate.model.entity.Conversion;
@@ -24,6 +25,7 @@ public class RateServiceTests {
 
     private static final String SOURCE_CURRENCY = "EUR";
     private static final String TARGET_CURRENCY = "TRY";
+    private static final String WRONG_TARGET_CURRENCY = "RUE";
     private static final Double SOURCE_AMOUNT = 20.0;
 
     private RateResultModel rateResultModel;
@@ -65,4 +67,10 @@ public class RateServiceTests {
         List<Conversion> conversions = rateService.getConversions(conversion.getTransactionId(), LocalDate.now());
         assertThat(conversions).isNotEmpty();
     }
+
+    @Test(expected = RateException.class)
+    public void Should_ThrowsError_When_CurrencyNotCorrect() {
+        rateService.getExchangeRate(SOURCE_CURRENCY, WRONG_TARGET_CURRENCY);
+    }
+
 }

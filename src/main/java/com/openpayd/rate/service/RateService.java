@@ -1,5 +1,7 @@
 package com.openpayd.rate.service;
 
+import com.openpayd.rate.enums.RateError;
+import com.openpayd.rate.exception.RateException;
 import com.openpayd.rate.model.dto.ConversionResultModel;
 import com.openpayd.rate.model.dto.RateResultModel;
 import com.openpayd.rate.model.entity.Conversion;
@@ -29,6 +31,9 @@ public class RateService {
     public Double getExchangeRate(String source, String target) {
         RateResultModel rateModel = rateClientService.getRate(source, target);
         logger.info("exchange rate  result by fixer service : " + rateModel.toString());
+        if (!rateModel.isSuccess()) {
+            throw new RateException(RateError.INVALID_CURRENCY_CODE);
+        }
         return rateModel.getRates().get(target);
     }
 
